@@ -75,7 +75,7 @@ export function NavbarMinimal() {
     { icon: IconBookmarks, label: 'Save Quote' },
     { icon: IconUser, label: 'Account' },
     { icon: IconEdit, label: 'Add Quote', onClick: () => {
-      debugger
+      
       navigate("add-quote")
     }, },
     { icon: IconSettings, label: 'Settings' },

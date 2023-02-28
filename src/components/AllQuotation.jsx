@@ -24,13 +24,13 @@ function AllQuotation() {
     <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop:'50px'}}>
       { articles.map((article, i)=>{
      return(
-      <div class="chat-notification" key={i}>
-      <div class="chat-notification-logo-wrapper">
-        <img class="chat-notification-logo" src={article.author.image} alt="ChitChat Logo"/>
+      <div className="chat-notification" key={i}>
+      <div className="chat-notification-logo-wrapper">
+        <img className="chat-notification-logo" src={article.author.image} alt="ChitChat Logo"/>
       </div>
-      <div class="chat-notification-content">
-        <h4 class="chat-notification-title">{article.title}</h4>
-        <p class="chat-notification-message">{article.description}</p>
+      <div className="chat-notification-content">
+        <h4 className="chat-notification-title">{article.title}</h4>
+        <p className="chat-notification-message">{article.description}</p>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
           <ActionIcon>
            <IconBookmarks size={18} />

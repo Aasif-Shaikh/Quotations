@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-
 export const fetchAllTags = createAsyncThunk(
     'tags/fetchAllTags',
     async (args, {rejectWithValue} ) => {
      try {
-        const { data } = await axios.get('https://api.realworld.io/api/tags')
-        debugger
-        console.log(data.data.tags)
-        return data
+        const {data} = await axios.get('https://api.realworld.io/api/tags')
+          return data
+        /* return data */
      } catch (error) {
         rejectWithValue(error)
      }
@@ -33,8 +31,9 @@ const demoSlice = createSlice({
         },
 
         [fetchAllTags.fulfilled]:  (state, {payload})=>{
+            
             state.loading = false
-            state.data = payload
+            state.data = payload.tags
             state.isSuccess = true
            },
            [fetchAllTags.rejected]:  (state, {payload})=>{
@@ -45,5 +44,5 @@ const demoSlice = createSlice({
     }
   })
 
-  export default demoSlice
+  export default demoSlice.reducer
   

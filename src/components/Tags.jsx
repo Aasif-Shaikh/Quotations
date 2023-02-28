@@ -2,8 +2,8 @@ import { createStyles, Paper, Text, ThemeIcon, Grid, Button} from '@mantine/core
 import { IconColorSwatch } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import { useDispatch } from 'react-redux';
-import { fetchAllTags } from '../utils/demoSelice';
+import { useDispatch, useSelector } from 'react-redux';
+import demoSlice, { fetchAllTags } from '../utils/demoSlice';
 const useStyles = createStyles((theme) => ({
   card: {
     position: 'relative',
@@ -43,20 +43,21 @@ const useStyles = createStyles((theme) => ({
 function Tags() {
   const [tags, setTags] = useState([])
   const { classes } = useStyles();
-
+  const data = useSelector((state) => state.demo)
+  
   const dispatch = useDispatch()
   useEffect(()=>
    { 
-    console.log("Hii", fetchAllTags)
-    dispatch(fetchAllTags)
+    console.log("Hii", data)
+    dispatch(fetchAllTags())
    }, [])
 
 
 /*    const getAlltags = async () =>{
-    debugger
+    
      await axios.get('https://api.realworld.io/api/tags').then(
       data => { 
-        debugger
+        
         console.log(data.data.tags)
         setTags(data.data.tags)
       }
@@ -67,7 +68,7 @@ function Tags() {
         <div>
           <Paper withBorder radius="md" className={classes.card} style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
           <Text style={{fontWeight: 700, fontSize: 'larger'}}>Topics for you</Text>
-          { tags.map((data, i)=> (
+          { data.data.map((data, i)=> (
             <Button color="gray" key={i}>
              {data}
            </Button>
